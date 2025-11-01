@@ -1,7 +1,9 @@
 import  { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { SanityClient } from "../../../react-sanity/Client/Client";
+import { SanityClient } from "../../react-sanity/Client/Client";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useLoaderData } from "react-router-dom";
+
+
 
 interface ProductData {
   product_id: number;
@@ -20,48 +22,21 @@ interface ProductData {
   };
 }
 const ProductDetails = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<ProductData[]>([]);
+  const data  = useLoaderData() as ProductData[];
   const [Selectedcolor, setColor] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
-  const { id: slug } = useParams();
 
-  async function getData() {
-    let query = `
-        *[_type == "product" && slug.current == "${slug}"] | order(id asc) {
-    product_id,
-    name,
-    price,
-    image,                     
-    "imageUrl": image.asset->url,
-    "slug": slug.current,
-      discount_price,
-      Description, 
-      stock,
-      off_percentage, 
-      colors ,
-       dimensions
-  }`;
-    setLoading(true);
-    const response = await SanityClient.fetch(query);
-    setData(response);
-    if(response[0]?.colors?.length > 0) {
-      setColor(response[0].colors[0]);
-    }
-    setLoading(false);
+
+  useEffect(()=>{
+    console.log()
+    setColor(data[0]['colors']![0])
+  },[])
+
+  if(!data){
+    return(
+      <div className="flex justify-center items-center w-full py-10">Please wait data is loading</div>
+    )
   }
-
-  console.log("data2", data);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-     if(loading){
-      return(
-        <div>...loading</div>
-      )
-    }
 
   return (
     <>
@@ -77,7 +52,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {data.map((items) => {
+      {data.map((items : ProductData) => {
         return (
           <div
             key={items.discount_price}
@@ -216,3 +191,31 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+
+
+  export async function getData({params} : {params:{id:string}}) : Promise<ProductData[]> {
+    const {id:slug} = params
+    // console.log(slug)
+    let query = `
+        *[_type == "product" && slug.current == "${slug}"] | order(id asc) {
+    product_id,
+    name,
+    price,
+    image,                     
+    "imageUrl": image.asset->url,
+    "slug": slug.current,
+      discount_price,
+      Description, 
+      stock,
+      off_percentage, 
+      colors ,
+       dimensions
+  }`;
+
+  let res = await SanityClient.fetch(query)
+  return res
+
+
+  
+  }

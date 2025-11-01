@@ -1,34 +1,20 @@
-import  { useEffect, useState } from "react";
-import { SanityClient } from "../../../react-sanity/Client/Client";
+import  { useState } from "react";
 import { Link } from "react-router-dom";
-const FeatureProducts = () => {
+import { memo } from "react";
+
+
+interface ProductData {
+  product_id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  slug: string;
+  discount_price?: number; 
+}
+
+const FeatureProducts = ({data}: {data:ProductData[]}) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<{}[]>([]);
 
-  async function getData() {
-    const query = `*[_type == "product" && 'featured_product' in category ]
-  | order(_createdAt asc) {
-    _id,
-    product_id,
-    name,
-    price,
-    "imageUrl": image.asset->url,
-    "slug": slug.current
-  }`;
-    setLoading(true);
-    let data = await SanityClient.fetch(query);
-    setData(data);
-    setLoading(false);
-  }
-  useEffect(() => {
-    getData();
-  }, []);
-
-     if(loading){
-      return(
-        <div className="flex justify-center items-center">...loading</div>
-      )
-    }
 
   return (
     <>
@@ -38,7 +24,7 @@ const FeatureProducts = () => {
         {/* Products */}
         <div className="grid place-items-center">
           <div className="mt-14  lgm:w-full justify-items-center cursor-pointer  px-2 grid grid-cols-1 sm:grid-cols-2 gap-y-12 sm:gap-y-10 lg:gap-y-0 lgm:grid-cols-4 gap-x-5  5xml:gap-x-1">
-            {data.map((items: any) => {
+            {data?.map((items: any) => {
               return (
                 <Link 
                   to={`/ProductDetails/${items.slug}`}
@@ -95,4 +81,4 @@ const FeatureProducts = () => {
   );
 };
 
-export default FeatureProducts;
+export default memo(FeatureProducts);

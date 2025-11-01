@@ -1,38 +1,20 @@
-import  { useEffect , useState } from 'react'
-import { SanityClient } from "../../../react-sanity/Client/Client";
+import  { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { memo } from "react";
 
-const LatestProducts = () => {
+interface ProductData {
+  product_id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  slug: string;
+  discount_price?: number; 
+}
+
+const LatestProducts = ({data}: {data:ProductData[]}) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<any[]>([]);
 
-   async function getData(){
-    let query = `
-    *[_type == "product" && 'latest_product' in category ]  {
-    product_id,
-    name,
-    price,
-    image,                     
-    "imageUrl": image.asset->url,
-    "slug": slug.current,
-        discount_price
-    }`
 
-    setLoading(true)
-    const data = await SanityClient.fetch(query)
-    setData(data)
-    setLoading(false)
-    }
-
-    useEffect(()=>{
-        getData()
-    },[])
-
-    if(loading){
-      return(
-        <div className='flex justify-center items-center'>...loading</div>
-      )
-    }
 
   return (
    <>
@@ -44,7 +26,7 @@ const LatestProducts = () => {
 
         {
 
-            data.map((items)=>{
+            data?.map((items)=>{
 
         return (
            <Link key={items.product_id} className='w-full h-full' to={`/ProductDetails/${items.slug}`}>
@@ -102,4 +84,4 @@ const LatestProducts = () => {
   )
 }
 
-export default LatestProducts
+export default memo(LatestProducts)

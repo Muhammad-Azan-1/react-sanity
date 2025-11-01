@@ -3,14 +3,15 @@ import './index.css'
 import App from './App.tsx'
 import { createBrowserRouter , createRoutesFromElements, Route , RouterProvider } from 'react-router-dom'
 import Home from './Home/Home.tsx'
-import ProductDetails from './Components/ProductDetails/ProductDetails.tsx'
-
+import ProductDetails from './ProductDetails/ProductDetails.tsx'
+import { getData } from "./ProductDetails/ProductDetails.tsx"
+import {FetchProductData} from './Home/Home.tsx'
 
 let Router = createBrowserRouter((
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
-      <Route path='' element={<Home/>}/>
-      <Route path='/ProductDetails/:id' element={<ProductDetails/>}></Route>
+      <Route loader={FetchProductData} path='' element={<Home/>}/>
+      <Route loader={getData} path='/ProductDetails/:id' element={<ProductDetails/>}></Route>
     </Route>
   )
 ))
