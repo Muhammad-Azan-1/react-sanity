@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+
 import { Link } from 'react-router-dom';
 import { memo } from "react";
 
@@ -12,7 +12,7 @@ interface ProductData {
 }
 
 const LatestProducts = ({data}: {data:ProductData[]}) => {
-  const [loading, setLoading] = useState<boolean>(false);
+
 
 
 

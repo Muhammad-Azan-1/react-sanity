@@ -1,7 +1,7 @@
 import  { useEffect, useState } from "react";
 import { SanityClient } from "../../react-sanity/Client/Client";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData , type LoaderFunctionArgs } from "react-router-dom";
 
 
 
@@ -193,8 +193,10 @@ const ProductDetails = () => {
 export default ProductDetails;
 
 
+// whenever your function is called loader property inside your route then the argument it pass to the function
+// it's type should be  LoaderFunctionArgs
 
-  export async function getData({params} : {params:{id:string}}) : Promise<ProductData[]> {
+  export async function getData({params} : LoaderFunctionArgs) : Promise<ProductData[]> {
     const {id:slug} = params
     // console.log(slug)
     let query = `
