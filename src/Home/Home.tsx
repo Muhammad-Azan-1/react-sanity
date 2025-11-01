@@ -1,4 +1,3 @@
-import React from 'react'
 import FeatureProducts from '../Components/FeatureProducts/FeatureProducts'
 import Hero from '../Components/Hero/Hero'
 import LatestProducts from '../Components/LatestProducts/LatestProducts'

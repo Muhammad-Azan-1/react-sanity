@@ -1,7 +1,7 @@
 import {NavLink , Link } from 'react-router-dom'
 import { FaEnvelope , FaPhone , FaHeart , FaUser , FaChevronDown , FaSearch ,FaBars , FaTimes} from 'react-icons/fa';
 import { FaCartShopping } from 'react-icons/fa6';
-import { useReducer } from 'react';
+
 
 
 const Header = ({state , dispatch} : {state:boolean , dispatch:any}) => {

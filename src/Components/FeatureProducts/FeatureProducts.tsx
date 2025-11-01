@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { SanityClient } from "../../../react-sanity/Client/Client";
 import { Link } from "react-router-dom";
 const FeatureProducts = () => {

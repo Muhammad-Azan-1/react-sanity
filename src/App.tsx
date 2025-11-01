@@ -5,10 +5,11 @@ import Overlay from "./Components/Overlay/Overlay"
 
 
 import { useReducer } from "react"
+
 function App() {
 
     function reducer(state : boolean , action : {[key:string] : string}) : boolean{
-      if(action.type == 'open'){
+      if(action.type == 'open' && state == false){
           document.body.style.overflow = 'hidden';
        return state = true
        
@@ -20,6 +21,7 @@ function App() {
     }
   
     const [state , dispatch]  = useReducer(reducer ,  false)
+    
   return (
  <>
     <div className="h-screen w-full relative">
