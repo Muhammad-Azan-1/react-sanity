@@ -30,7 +30,7 @@ const LatestProducts = () => {
 
     if(loading){
       return(
-        <div>...loading</div>
+        <div className='flex justify-center items-center'>...loading</div>
       )
     }
 

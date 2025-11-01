@@ -26,7 +26,7 @@ const FeatureProducts = () => {
 
      if(loading){
       return(
-        <div>...loading</div>
+        <div className="flex justify-center items-center">...loading</div>
       )
     }
 
@@ -61,7 +61,8 @@ const FeatureProducts = () => {
                   {/* image text box */}
                   <div className= {`flex text-h h-[170px] group-hover:bg-h1  transition-all duration-500  group-hover:text-white flex-col w-full    justify-center items-center px-3 ${items.product_id == 2 || items.product_id == 3 ? 'pt-3 pb-1' : 'pb-3 pt-3'} shadow-[1px_1px_10px_0px_rgba(0,0,0,0.2)]  gap-y-3`}>
                     <h2 className="text-[17px] text-center">{items.name}</h2>
-                    <img src="/images/Group 141.svg" alt="bar" />
+                    <img src="/images/colorbox.svg" className="group-hover:hidden inline-block" alt="bar" />
+                    <img src="/images/Group 141 (2).svg" className="hidden group-hover:inline-block" alt="bar" />
                     <p className="text-[14px]">Code - Y523201</p>
                     <p className="text-[14px]">${items.price}</p>
                   </div>

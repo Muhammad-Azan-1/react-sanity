@@ -65,7 +65,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="  bg-[#F6F5FF] h-[286px] flex flex-col gap-y-3 items-start justify-center w-full">
+      <div className="  bg-[#F2F0FF] h-[286px] flex flex-col gap-y-3 items-start justify-center w-full">
         <div className="w-full md:w-[550px] h-[55%] flex items-center md:items-start justify-center flex-col ml-0 md:ml-[150px] lg:ml-[250px]">
           <h1 className="text-[#101750] text-[36px] font-josefin font-[700px]">
             Product Details

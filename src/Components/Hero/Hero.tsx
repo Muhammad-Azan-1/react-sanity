@@ -2,7 +2,7 @@ const Hero = () => {
   return (
 <>
 
-<div  className='w-full h-auto flex  justify-center lg:justify-start pl-2 pr-2 sm:pl-4 sm:pr-4 lg:pr-0 lg:pl-[190px] xl:pl-[210px] items-center  relative py-10 bg-[#F2F0FF]'>
+<div  className=' w-full h-auto flex  justify-center lg:justify-start pl-2 pr-2 sm:pl-4 sm:pr-4 lg:pr-0 lg:pl-[190px] xl:pl-[210px] items-center  relative py-10 bg-[#F2F0FF]'>
 
   <div className='w-[270px] xl:w-[300px] hidden lg:flex absolute left-[-23px] top-0'>
     <img className='h-auto w-full' src="/images/light.svg" alt="Light" />
