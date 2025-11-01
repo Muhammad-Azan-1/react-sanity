@@ -1,4 +1,4 @@
-import client from '@sanity/client'
+import { createClient } from '@sanity/client'
 
 // Read env vars from Vite's runtime env (import.meta.env).
 // In Vite you must prefix client-exposed variables with `VITE_`.
@@ -14,7 +14,7 @@ const dataset = _env.VITE_SANITY_DATASET ?? 'production'
 const apiVersion = _env.VITE_SANITY_API_VERSION ?? '2024-01-01'
 const token = _env.VITE_SANITY_API_TOKEN ?? undefined
 
-export const SanityClient = client({
+export const SanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
