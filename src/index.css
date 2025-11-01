@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-*:initial;
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 767px;
+  --breakpoint-mdl: 830px;
+  --breakpoint-lg: 64rem;   
+  --breakpoint-lgm: 1023px;   
+  --breakpoint-5xml: 1180px;  
+  --breakpoint-4xml: 1300px;
+  --breakpoint-3xml: 1380px;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+ 
+
+  --color-top:#7E33E0;
+  --color-hover-menu-item : #FB2E86;
+  --color-hero:#F2F0FF;
+  --color-h1:#1A0B5B;
+
+ --font-display: 'lato' , sans-serif;
+
+
+
+
+}
+
+
+
+body{
+    font-family: 'Josefin Sans' , sans-serif;
+
+}
